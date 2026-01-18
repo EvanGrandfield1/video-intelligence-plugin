@@ -1,6 +1,8 @@
 
 # Ignore all dot-directories
 .*/
+.venv/
+data/audio/
 
 # Keep the gitignore file itself
 !.gitignore
