@@ -53,4 +53,4 @@ audio_chunks/
 data/
 downloads/
 tmp/
-
+.venv/
