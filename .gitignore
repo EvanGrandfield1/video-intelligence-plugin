@@ -41,13 +41,13 @@ __pycache__/
 *.m4a
 *.webm
 
+
 # Whisper or WhisperX outputs
 transcripts/
 diarized_segments/
 audio_chunks/
 
 # ffmpeg intermediate files
-*.ts
 *.mov
 *.aac
 

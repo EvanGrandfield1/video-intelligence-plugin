@@ -2,14 +2,26 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import { Request, Response } from "express";
+
+// Simple type definitions for Express-like request/response
+interface UploadRequest {
+    file?: {
+        originalname: string;
+        buffer: Buffer;
+    };
+}
+
+interface UploadResponse {
+    status: (code: number) => { json: (obj: any) => void };
+    json: (obj: any) => void;
+}
 
 const DOCS_DIR = path.join(__dirname, "../../data/docs");
 const PY_INGEST_PATH = path.join(__dirname, "doc_ingest_chunk_embed.py");
 
 if (!fs.existsSync(DOCS_DIR)) fs.mkdirSync(DOCS_DIR, { recursive: true });
 
-export async function handleDocumentUpload(req: Request, res: Response) {
+export async function handleDocumentUpload(req: UploadRequest, res: UploadResponse) {
     try {
         if (!req.file) {
             return res.status(400).json({ error: "No file uploaded" });
