@@ -1,0 +1,10 @@
+{
+  "python.pythonPath": ".venv/bin/python",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  }
+}
+
