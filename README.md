@@ -1,3 +1,14 @@
+How to use
+git clone https://github.com/EvanGrandfield1/video-intelligence-plugin.git
+cd video-intelligence-plugin
+npm install
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env  # Then fill in API keys
+npm run dev
+
+
 SPEC: Real-Time Video Call Intelligence Plugin (MVP)
 Goal
 Build a tool that:
@@ -85,5 +96,6 @@ AC9
 A summary is generated that adversarially explains what happened and why it matters
 AC10
 Summary highlights strategic lies, manipulation, or intent mismatches between speakers
+
 
 
