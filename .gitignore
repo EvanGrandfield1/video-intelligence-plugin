@@ -56,3 +56,4 @@ data/
 downloads/
 tmp/
 .venv/
+.env
