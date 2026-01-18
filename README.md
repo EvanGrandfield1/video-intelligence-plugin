@@ -3,17 +3,20 @@
 ## How to Use
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/EvanGrandfield1/video-intelligence-plugin.git
    cd video-intelligence-plugin
    ```
 
 2. Install Node.js dependencies:
+
    ```bash
    npm install
    ```
 
 3. Set up Python environment:
+
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate
@@ -21,11 +24,13 @@
    ```
 
 4. Configure environment variables:
+
    ```bash
    cp .env.example .env  # Then fill in API keys
    ```
 
 5. Start the development server:
+
    ```bash
    npm run dev
    ```
@@ -77,7 +82,8 @@ As transcription occurs:
 - Extract keywords or phrases from speech
 - Run embedding search to find matching doc chunks
 - Surface relevant chunks live in a side panel or console
-- **Tech:** keyword extraction (KeyBERT, RAKE, or naïve n-grams), top-k cosine similarity using pgvector
+- **Tech:** keyword extraction (KeyBERT, RAKE, or naïve n-grams), top-k cosine
+  similarity using pgvector
 
 #### 5. Post-Convo Adversarial Pass
 
@@ -100,7 +106,8 @@ Strategic distillation:
 - Hidden goals
 - Deception attempts
 - Conflict or alignment of interests
-- **Tech:** GPT-4 (chat completion with transcript + docs), custom heuristics for tone flags
+- **Tech:** GPT-4 (chat completion with transcript + docs), custom heuristics
+  for tone flags
 
 ---
 
@@ -108,26 +115,25 @@ Strategic distillation:
 
 ### General
 
-| ID | Criteria |
-|----|----------|
+| ID  | Criteria                                                                      |
+| --- | ----------------------------------------------------------------------------- |
 | AC1 | System can ingest and transcribe any public YouTube video with at least 2 speakers |
-| AC2 | User can upload at least one document (.pdf or .txt) prior to transcription |
+| AC2 | User can upload at least one document (.pdf or .txt) prior to transcription  |
 | AC3 | All major events in the transcription are timestamped and speaker-attributed |
 
 ### Live Context Box
 
-| ID | Criteria |
-|----|----------|
-| AC4 | Keywords/phrases from the transcript are extracted in real time |
-| AC5 | Matching document chunks are retrieved and shown in a live "context box" |
-| AC6 | Only the most relevant chunk (or top-3) is surfaced at any time |
+| ID  | Criteria                                                                    |
+| --- | --------------------------------------------------------------------------- |
+| AC4 | Keywords/phrases from the transcript are extracted in real time             |
+| AC5 | Matching document chunks are retrieved and shown in a live "context box"    |
+| AC6 | Only the most relevant chunk (or top-3) is surfaced at any time            |
 
 ### Adversarial Analysis
 
-| ID | Criteria |
-|----|----------|
-| AC7 | System flags contradictions between speech and uploaded docs (coherence test) |
-| AC8 | System detects tone shifts based on predefined linguistic cues |
-| AC9 | A summary is generated that adversarially explains what happened and why it matters |
+| ID   | Criteria                                                                           |
+| ---- | ---------------------------------------------------------------------------------- |
+| AC7  | System flags contradictions between speech and uploaded docs (coherence test)     |
+| AC8  | System detects tone shifts based on predefined linguistic cues                    |
+| AC9  | A summary is generated that adversarially explains what happened and why it matters |
 | AC10 | Summary highlights strategic lies, manipulation, or intent mismatches between speakers |
-
