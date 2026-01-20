@@ -1,8 +1,14 @@
 # Video Intelligence Plugin - Python Dependencies
 # Install with: pip install -r requirements.txt
+# Requires Python 3.11 (Python 3.14 not supported due to PyTorch/numba compatibility)
 
 # Core transcription
-openai-whisper>=20240930
+openai-whisper==20250625
+whisper
+
+# Numba/LLVM (pinned for prebuilt wheel compatibility)
+numba==0.60.0
+llvmlite==0.43.0
 
 # Document processing
 pdfplumber>=0.11.0
@@ -11,5 +17,5 @@ python-dotenv>=1.0.0
 # API calls
 requests>=2.31.0
 
-# NumPy (pinned for torch compatibility)
-numpy<2
+# NumPy (pinned for torch/numba compatibility)
+numpy>=1.22,<2

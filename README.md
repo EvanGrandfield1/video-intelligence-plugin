@@ -101,7 +101,7 @@ Strategic distillation:
 
 ### Prerequisites
 - Node.js 18+
-- Python 3.9+
+- **Python 3.11** (required - Python 3.12+ not supported due to PyTorch/numba compatibility)
 - `yt-dlp` (`brew install yt-dlp`)
 - `ffmpeg` (`brew install ffmpeg`)
 - OpenAI API key
@@ -117,8 +117,8 @@ cd video-intelligence-plugin
 # Install Node dependencies
 npm install
 
-# Set up Python environment
-python3 -m venv .venv
+# Set up Python environment (must use Python 3.11)
+python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
