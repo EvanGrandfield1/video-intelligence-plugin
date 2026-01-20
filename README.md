@@ -133,9 +133,13 @@ Run this SQL in your Supabase SQL editor:
 
 ```sql
 -- Enable pgvector extension
+-- Enable pgvector extension (if not already enabled)
 CREATE EXTENSION IF NOT EXISTS vector;
 
--- Create document chunks table
+-- Drop existing table if it has wrong schema
+DROP TABLE IF EXISTS document_chunks;
+
+-- Create document chunks table with correct schema
 CREATE TABLE document_chunks (
   id BIGSERIAL PRIMARY KEY,
   doc_id TEXT NOT NULL,
@@ -145,10 +149,35 @@ CREATE TABLE document_chunks (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Create index for vector similarity search
-CREATE INDEX ON document_chunks 
-USING ivfflat (embedding vector_cosine_ops) 
-WITH (lists = 100);
+-- Create the RPC function for vector similarity search
+CREATE OR REPLACE FUNCTION match_doc_chunks(
+  query_embedding VECTOR(1536),
+  match_count INT DEFAULT 3,
+  filter_doc_id TEXT DEFAULT NULL
+)
+RETURNS TABLE (
+  id BIGINT,
+  doc_id TEXT,
+  chunk_index INT,
+  content TEXT,
+  similarity FLOAT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  RETURN QUERY
+  SELECT
+    dc.id,
+    dc.doc_id,
+    dc.chunk_index,
+    dc.content,
+    1 - (dc.embedding <=> query_embedding) AS similarity
+  FROM document_chunks dc
+  WHERE (filter_doc_id IS NULL OR dc.doc_id = filter_doc_id)
+  ORDER BY dc.embedding <=> query_embedding
+  LIMIT match_count;
+END;
+$$;
 ```
 
 ### Run
@@ -188,5 +217,6 @@ npm run dev
 ## 📄 License
 
 ISC
+
 
 
