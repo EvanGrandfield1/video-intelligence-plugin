@@ -52,7 +52,8 @@ audio_chunks/
 *.aac
 
 # Other large data dirs
-data/
+data/audio/
+data/transcripts/
 downloads/
 tmp/
 .venv/
